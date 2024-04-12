@@ -31,9 +31,7 @@ const ExperimentComponent = ({ darkMode }) => {
           Select the experiment to display:
         </p>
         <select
-          className={`p-2 border rounded-md mb-4 px-4 text-gray-800 bg-gray-50 w-full ${
-            darkMode ? "bg-[#262730] text-white border-none" : ""
-          }`}
+          className={`p-2 border rounded-md mb-4 px-4 text-gray-800 bg-gray-50 w-full dark:bg-[#262730] dark:text-white dark:border-none`}
           value={selectedCode}
           onChange={handleDropdownChange}
         >
