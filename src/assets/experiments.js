@@ -166,29 +166,29 @@ const experiments = [
     #include<wait.h>
     
     int main(int argc, char *argv[]){
-    printf("Main Function: \n");
+    printf("Main Function: \\n");
     int retval=1;
     pid_t pid=fork();
     
     if(pid<0){
-    printf("Error in fork operation\n");
+    printf("Error in fork operation\\n");
     }
     
     if(pid==0){
-    printf("PID for Child process: %d \nPID of its parent process: %d\n",getpid(),getppid());
+    printf("PID for Child process: %d \\nPID of its parent process: %d\\n",getpid(),getppid());
     execl("./binsearch",argv[1],NULL); //object file of child process program-binsearch.c
     }
     
     else{
-    printf("PID of parent process: %d\n",getpid());
+    printf("PID of parent process: %d\\n",getpid());
     wait(&retval); //wait for child process to terminate
     
     if(WIFEXITED(retval)==1) //child process exit status
     {
-    printf("Child terminated normally\n");
+    printf("Child terminated normally\\n");
     }
     else{
-    printf("Child terminated abnormally\n");
+    printf("Child terminated abnormally\\n");
     exit(0);
     }
     
@@ -215,7 +215,7 @@ const experiments = [
           b[(*thno)][i]=b[(*thno)][i]*a[(*thno)][i]; 
           //b matrix stores elements of a matrix raised to power of row number
         }
-        printf("(%d)thread \n",(*thno+1)); //thread no. for each operation
+        printf("(%d)thread \\n",(*thno+1)); //thread no. for each operation
     }
     
     int main(){
@@ -229,7 +229,7 @@ const experiments = [
         for(int i=0; i<4;i++){
             for(int j=0;j<4;j++)
               printf("%d ",a[i][j]);
-            printf("\n");
+            printf("\\n");
         }
         //Create threads for corresponding row operation
         for(int i=0;i<4;i++){
@@ -261,7 +261,7 @@ const experiments = [
     void* writer(void *p){
     int* i =(int*)p;
     sem_wait(&wr);//blocks writer access to 'count', until acquire 'wr'
-    printf("\nWriter %d writes page number %d",*i,++count);
+    printf("\\nWriter %d writes page number %d",*i,++count);
     sem_post(&wr); //release of 'wr' semaphore to allow other writer threads
     }
     
@@ -273,7 +273,7 @@ const experiments = [
       sem_wait(&wr);//blocks writer access to 'count', until acquire 'wr'
     
     sem_post(&mutex);//release of 'mutex' semaphore to allow other reader threads
-    printf("\nReader %d reads page number %d ",*i,count);
+    printf("\\nReader %d reads page number %d ",*i,count);
     sem_wait(&mutex);//mutual exclusion to allow only reader to modify 'rcount' at a time
     rcount--;
     
