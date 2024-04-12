@@ -85,7 +85,7 @@ const ExperimentComponent = ({ darkMode }) => {
               Command-line execution
             </h6>
             <SyntaxHighlighter
-            language="c"
+            language="bash"
             style={darkMode ? dracula : solarizedLight}
             customStyle={{
               wordWrap: "break-word",
