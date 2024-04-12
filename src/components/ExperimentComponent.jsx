@@ -64,7 +64,7 @@ const ExperimentComponent = () => {
         </SyntaxHighlighter>
       </div>
       <div className="mt-4">
-        <h6 className="text-xl font-bold mb-2">Sample Output</h6>
+        <h6 className="text-xl font-bold dark:text-white mb-2">Sample Output</h6>
         <img src={experiments.find(exp => exp.title === selectedCode)?.imageUrl} alt="Sample Output" className="max-w-xl w-full shadow-md" />
       </div>
       </div>
