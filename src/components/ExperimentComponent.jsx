@@ -80,16 +80,14 @@ const ExperimentComponent = ({ darkMode }) => {
             {experiments.find((exp) => exp.title === selectedCode)?.code}
           </SyntaxHighlighter>
 
-          <div className={`mt-4`}>
+          <div className={`mt-4 w-full`}>
             <h6 className={`${darkMode ? "text-white" : "text-black"} mb-4`}>
               Sample Output
             </h6>
-            <img
-              src={
-                experiments.find((exp) => exp.title === selectedCode)?.imageUrl
-              }
+            <img 
+              src={experiments.find(exp => exp.title === selectedCode) ? `../src/assets/pictures/${experiments.find(exp => exp.title === selectedCode).imageUrl}` : null}
               alt="Sample Output"
-              className="max-w-xl w-full shadow-md"
+              className=" w-full shadow-md"
             />
           </div>
         </div>
@@ -98,6 +96,6 @@ const ExperimentComponent = ({ darkMode }) => {
   );
 };
 
-
+/*src={experiments.find(exp => exp.title === selectedCode) ? `../src/assets/pictures/${experiments.find(exp => exp.title === selectedCode).imageUrl}` : null} */
 
 export default ExperimentComponent;

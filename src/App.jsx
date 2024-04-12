@@ -28,8 +28,6 @@ function App() {
     <FaMoon className="inline-block" />
   )}
 </button>
-
-
       <ExperimentComponent darkMode={darkMode} />
     </div>
   );

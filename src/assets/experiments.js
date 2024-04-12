@@ -319,7 +319,7 @@ const experiments = [
         }
         pthread_exit(NULL); //terminates calling thread
         return 0;
-    }`, imageUrl: "/images/Threadmanagement.png"},
+    }`, imageUrl: "/Threadmanagement.png"},
     { title: 'Dining philosophers problem', code: `#include <pthread.h>
     #include <semaphore.h>
     #include <stdio.h>
@@ -397,7 +397,7 @@ const experiments = [
      pthread_join(thread_id[i], NULL);
     
     }`,
-    imageUrl: "images/Diningph.png",
+    imageUrl: "Diningph.png",
   },
   {
     title: "Producer-Consumer problem",
@@ -471,7 +471,7 @@ const experiments = [
     
     exit(0);
     }`,
-    imageUrl: "images/Producersconsumers.png",
+    imageUrl: "Producersconsumers.png",
   },
   {
     title: "Reader-Writer problem",
@@ -520,7 +520,7 @@ const experiments = [
     for(int i=0;i<6;i++) pthread_join(p[i],NULL);
     
     }`,
-    imageUrl: "images/Readerswriters.png",
+    imageUrl: "Readerswriters.png",
   },
   {
     title: "Process/thread synchronisation using File locks",
