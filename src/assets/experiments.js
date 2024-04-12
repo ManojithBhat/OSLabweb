@@ -1,6 +1,7 @@
 const experiments = [
     { title: 'ls command', code: 
-   `#include<stdio.h>
+   `
+    #include<stdio.h>
     #include<dirent.h>    //handle directory
     #include<sys/stat.h>  //file info
     #include<pwd.h>       //user info
@@ -68,7 +69,8 @@ const experiments = [
     }
     
     }` },
-    { title: 'cp command', code: `#include <stdio.h>
+    { title: 'cp command', code: `
+    #include <stdio.h>
     #include <stdlib.h>
     #include <fcntl.h> //file control
     #include <errno.h>
@@ -144,7 +146,8 @@ const experiments = [
     }
     
     }`},
-    { title: 'rm command', code: `#include <stdio.h>
+    { title: 'rm command', code: `
+    #include <stdio.h>
     #include <stdlib.h>
     #include <fcntl.h> //file control
     #include <errno.h>
@@ -156,7 +159,7 @@ const experiments = [
       if(output_fd == -1){
       perror("unlink error");
       return 3;
-    }
+      }
     }`},
     { title: 'Process Control System Calls', code: `#include<stdio.h>
     #include<string.h>
