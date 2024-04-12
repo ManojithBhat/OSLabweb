@@ -43,25 +43,25 @@ const ExperimentComponent = ({ darkMode }) => {
             </CopyToClipboard>
           </div>
 
-          <SyntaxHighlighter
-            language="c"
-            style={darkMode ? dracula : solarizedLight}
-            customStyle={{
-              wordWrap: 'break-word',
-              marginBottom: '1rem',
-              overflowX: 'auto',
-              textAlign: 'left',
-              backgroundColor: darkMode ? '#262730' : '#F9FAFB',
-              borderRadius: '5px',
-              padding: '1rem',
-              fontSize: '14px',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-              color: darkMode ? '#ffffff' : '#000000', // Text color based on dark mode
-            }}
-          >
-            {experiments.find(exp => exp.title === selectedCode)?.code}
-          </SyntaxHighlighter>
-        </div>
+        <SyntaxHighlighter
+          language="c"
+          style={solarizedLight} // Assuming light mode for simplicity
+          // showLineNumbers
+          customStyle={{
+            wordWrap:true,
+            marginBottom: '1rem',
+            overflowX: 'auto',
+            textAlign: 'left',
+            backgroundColor: '#F9FAFB',
+            borderRadius: '5px',
+            padding: '1rem',
+            fontSize: '14px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          }}
+        >
+          {experiments.find(exp => exp.title === selectedCode)?.code}
+        </SyntaxHighlighter>
+      </div>
       </div>
     </div>
   );

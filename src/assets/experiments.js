@@ -69,8 +69,7 @@ const experiments = [
     }
     
     }` },
-    { title: 'cp command', code: `
-    #include <stdio.h>
+    { title: 'cp command', code: `#include <stdio.h>
     #include <stdlib.h>
     #include <fcntl.h> //file control
     #include <errno.h>
@@ -116,7 +115,7 @@ const experiments = [
     close (input_fd);
     close (output_fd);
     return (EXIT_SUCCESS);
-    }` },
+    }` , imageUrl: "path_to_image_2.jpg"},
     { title: 'mv command', code: `#include <stdio.h>
     #include <stdlib.h>
     #include <fcntl.h> //file control
@@ -146,8 +145,7 @@ const experiments = [
     }
     
     }`},
-    { title: 'rm command', code: `
-    #include <stdio.h>
+    { title: 'rm command', code: `#include <stdio.h>
     #include <stdlib.h>
     #include <fcntl.h> //file control
     #include <errno.h>
@@ -159,7 +157,7 @@ const experiments = [
       if(output_fd == -1){
       perror("unlink error");
       return 3;
-      }
+    }
     }`},
     { title: 'Process Control System Calls', code: `#include<stdio.h>
     #include<string.h>
@@ -246,7 +244,7 @@ const experiments = [
     else
     printf("Element is present");
     return 0;
-    } `},
+    } `, imageUrl: "path_to_image_2.jpg"},
     { title: 'Thread management using Pthreads', code: `#include<stdio.h>
     #include<pthread.h> //handle pthread operations
     #include<sys/types.h>
@@ -301,7 +299,7 @@ const experiments = [
         }
         pthread_exit(NULL); //terminates calling thread
         return 0;
-    }`},
+    }`, imageUrl: "path_to_image_2.jpg"},
     { title: 'Dining philosophers problem', code: `#include <pthread.h>
     #include <semaphore.h>
     #include <stdio.h>
@@ -378,7 +376,7 @@ const experiments = [
     for (i = 0; i < N; i++)
      pthread_join(thread_id[i], NULL);
     
-    }`},
+    }`, imageUrl: "path_to_image_2.jpg"},
     { title: 'Producer-Consumer problem', code: `#include<stdio.h>
     #include<semaphore.h>
     #include<pthread.h>
@@ -448,7 +446,7 @@ const experiments = [
       pthread_join(tidC[i],NULL);
     
     exit(0);
-    }`},
+    }`, imageUrl: "path_to_image_2.jpg"},
     { title: 'Reader-Writer problem', code: `#include<stdio.h>
     #include<stdlib.h>
     #include<pthread.h>
@@ -493,7 +491,7 @@ const experiments = [
     for(int i=3;i<6;i++) pthread_create(&p[i],NULL,reader,&a[i]); //reader threads
     for(int i=0;i<6;i++) pthread_join(p[i],NULL);
     
-    }`},
+    }`, imageUrl: "path_to_image_2.jpg"},
     { title: 'Process/thread synchronisation using File locks', code: `#include <stdio.h>
     #include <stdlib.h>
     #include <unistd.h>
@@ -562,7 +560,7 @@ const experiments = [
     printf("Unlocked\\n");
     close(fd);
     return 0;
-    }`},
+    }`, imageUrl: "path_to_image_2.jpg"},
     { title: 'Creation and use of Static and Shared libraries', code: `
     /* add.c */
     int add(int quant1, int quant2)
@@ -606,7 +604,7 @@ const experiments = [
     gcc -shared -o libmath1.so add.o sub.o //link object files to library file (prefix- lib) (extension- .so for shared)
     gcc -o opDemo opDemo.o libmath1.so
 
-    `},
+    `, imageUrl: "path_to_image_2.jpg"},
     // Add more experiments here...
   ];
 
