@@ -1,6 +1,7 @@
 const experiments = [
     { title: 'ls command', code: 
-   `#include<stdio.h>
+   `
+    #include<stdio.h>
     #include<dirent.h>    //handle directory
     #include<sys/stat.h>  //file info
     #include<pwd.h>       //user info
@@ -67,7 +68,7 @@ const experiments = [
     printf(" %s\\n",de->d_name);
     }
     
-    }`, imageUrl: "path_to_image_2.jpg" },
+    }` },
     { title: 'cp command', code: `#include <stdio.h>
     #include <stdlib.h>
     #include <fcntl.h> //file control
@@ -143,8 +144,7 @@ const experiments = [
     return 3;
     }
     
-    }`
-    , imageUrl: "path_to_image_2.jpg" },
+    }`},
     { title: 'rm command', code: `#include <stdio.h>
     #include <stdlib.h>
     #include <fcntl.h> //file control
@@ -158,7 +158,7 @@ const experiments = [
       perror("unlink error");
       return 3;
     }
-    }`, imageUrl: "path_to_image_2.jpg"},
+    }`},
     { title: 'Process Control System Calls', code: `#include<stdio.h>
     #include<string.h>
     #include<sys/types.h>
