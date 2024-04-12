@@ -19,7 +19,7 @@ const ExperimentComponent = ({ darkMode }) => {
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen p-8">
-      <div className="flex flex-col items-start mt-16 w-full sm:w-90 md:w-60 lg:w-[60%] xl:w-[60%]">
+      <div className="flex flex-col items-start mt-16 w-full sm:w-[90%] md:w-[80%] lg:w-[60%] xl:w-[60%]">
         <h5
           className={`text-2xl font-bold ${
             darkMode ? "text-white" : "text-black"
@@ -84,10 +84,9 @@ const ExperimentComponent = ({ darkMode }) => {
             <h6 className={`${darkMode ? "text-white" : "text-black"} mb-4`}>
               Sample Output
             </h6>
-            
             <img
               src={
-                experiments.find((exp) => exp.title === selectedCode)?.code
+                experiments.find((exp) => exp.title === selectedCode)?.imageUrl
               }
               alt="Sample Output"
               className="max-w-xl w-full shadow-md"
@@ -98,5 +97,7 @@ const ExperimentComponent = ({ darkMode }) => {
     </div>
   );
 };
+
+
 
 export default ExperimentComponent;
