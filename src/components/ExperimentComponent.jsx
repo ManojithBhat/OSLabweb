@@ -87,7 +87,7 @@ const ExperimentComponent = ({ darkMode }) => {
             
             <img
               src={
-                experiments.find((exp) => exp.title === selectedCode)?.code
+                experiments.find((exp) => exp.title === selectedCode)?.imageUrl
               }
               alt="Sample Output"
               className="max-w-xl w-full shadow-md"

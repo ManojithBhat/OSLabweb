@@ -240,9 +240,9 @@ const experiments = [
     scanf("%d",&key);
     int result = binarySearch(arr, 0, n - 1, key);
     if(result==-1)
-    printf("Element is not present in array");
+    printf("Element is not present in array\\n");
     else
-    printf("Element is present");
+    printf("Element is present\\n");
     return 0;
     } `, imageUrl: "path_to_image_2.jpg"},
     { title: 'Thread management using Pthreads', code: `#include<stdio.h>
@@ -299,7 +299,7 @@ const experiments = [
         }
         pthread_exit(NULL); //terminates calling thread
         return 0;
-    }`, imageUrl: "https://github.com/ManojithBhat/OSLabweb/blob/main/images/Threadmanagement.png"},
+    }`, imageUrl: "/images/Threadmanagement.png"},
     { title: 'Dining philosophers problem', code: `#include <pthread.h>
     #include <semaphore.h>
     #include <stdio.h>
