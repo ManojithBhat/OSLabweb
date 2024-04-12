@@ -491,7 +491,7 @@ const experiments = [
     for(int i=3;i<6;i++) pthread_create(&p[i],NULL,reader,&a[i]); //reader threads
     for(int i=0;i<6;i++) pthread_join(p[i],NULL);
     
-    }`, imageUrl: "path_to_image_2.jpg"},
+    }`, imageUrl: "OSLabweb\images\Readerswriters.png"},
     { title: 'Process/thread synchronisation using File locks', code: `#include <stdio.h>
     #include <stdlib.h>
     #include <unistd.h>
