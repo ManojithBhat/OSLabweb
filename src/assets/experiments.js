@@ -69,7 +69,13 @@ const experiments = [
     printf(" %s\\n",de->d_name);
     }
     
-    }`,
+    }`, 
+    cle: `/* Command-line execution
+
+    $ gcc lsprogram.c
+    $ ./a.out
+    
+    */`
   },
   {
     title: "cp command",
