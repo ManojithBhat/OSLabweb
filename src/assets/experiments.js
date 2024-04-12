@@ -376,7 +376,7 @@ const experiments = [
     for (i = 0; i < N; i++)
      pthread_join(thread_id[i], NULL);
     
-    }`, imageUrl: "path_to_image_2.jpg"},
+    }`, imageUrl: "../../images/Producersconsumers.jpg"},
     { title: 'Producer-Consumer problem', code: `#include<stdio.h>
     #include<semaphore.h>
     #include<pthread.h>

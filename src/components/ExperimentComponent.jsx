@@ -86,9 +86,10 @@ const ExperimentComponent = ({ darkMode }) => {
             <h6 className={`${darkMode ? "text-white" : "text-black"} mb-4`}>
               Sample Output
             </h6>
+            
             <img
               src={
-                experiments.find((exp) => exp.title === selectedCode)?.imageUrl
+                experiments.find((exp) => exp.title === selectedCode)?.code
               }
               alt="Sample Output"
               className="max-w-xl w-full shadow-md"
