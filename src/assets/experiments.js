@@ -299,7 +299,7 @@ const experiments = [
         }
         pthread_exit(NULL); //terminates calling thread
         return 0;
-    }`, imageUrl: "path_to_image_2.jpg"},
+    }`, imageUrl: "https://github.com/ManojithBhat/OSLabweb/blob/main/images/Threadmanagement.png"},
     { title: 'Dining philosophers problem', code: `#include <pthread.h>
     #include <semaphore.h>
     #include <stdio.h>
@@ -376,7 +376,7 @@ const experiments = [
     for (i = 0; i < N; i++)
      pthread_join(thread_id[i], NULL);
     
-    }`, imageUrl: "../../images/Producersconsumers.jpg"},
+    }`, imageUrl: "images/Diningph.png"},
     { title: 'Producer-Consumer problem', code: `#include<stdio.h>
     #include<semaphore.h>
     #include<pthread.h>
@@ -446,7 +446,7 @@ const experiments = [
       pthread_join(tidC[i],NULL);
     
     exit(0);
-    }`, imageUrl: "path_to_image_2.jpg"},
+    }`, imageUrl: "images/Producersconsumers.png"},
     { title: 'Reader-Writer problem', code: `#include<stdio.h>
     #include<stdlib.h>
     #include<pthread.h>
@@ -491,7 +491,7 @@ const experiments = [
     for(int i=3;i<6;i++) pthread_create(&p[i],NULL,reader,&a[i]); //reader threads
     for(int i=0;i<6;i++) pthread_join(p[i],NULL);
     
-    }`, imageUrl: "OSLabweb\images\Readerswriters.png"},
+    }`, imageUrl: "images/Readerswriters.png"},
     { title: 'Process/thread synchronisation using File locks', code: `#include <stdio.h>
     #include <stdlib.h>
     #include <unistd.h>
