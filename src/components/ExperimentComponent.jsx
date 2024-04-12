@@ -5,7 +5,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FiCopy } from 'react-icons/fi';
 import experiments from '../assets/experiments';
 
-const CodeSnippet = () => {
+const ExperimentComponent = () => {
   const [selectedCode, setSelectedCode] = useState('ls command');
   const [copied, setCopied] = useState(false);
 
@@ -17,11 +17,11 @@ const CodeSnippet = () => {
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen p-8 ">
-      <div className="flex flex-col items-start">
-      <h5 className="text-2xl font-bold mb-4">Operating System Lab Experiments</h5>
-      <p className="mb-4">Select the experiment to display:</p>
+      <div className="flex flex-col items-start mt-16">
+      <h5 className="text-2xl font-bold dark:text-white mb-4">Operating System Lab Experiments</h5>
+      <p className="mb-4 dark:text-white">Select the experiment to display:</p>
       <select
-        className="p-1 border rounded-md mb-4 text-gray-800 bg-gray-50 w-full"
+        className="p-2 border rounded-md mb-4 text-gray-800 bg-gray-50 w-full dark:bg-[#262730] dark:text-white dark:border-none"
         value={selectedCode}
         onChange={handleDropdownChange}
       >
@@ -49,6 +49,7 @@ const CodeSnippet = () => {
           style={solarizedLight} // Assuming light mode for simplicity
           // showLineNumbers
           customStyle={{
+            wordWrap:true,
             marginBottom: '1rem',
             overflowX: 'auto',
             textAlign: 'left',
@@ -71,4 +72,4 @@ const CodeSnippet = () => {
   );
 };
 
-export default CodeSnippet;
+export default ExperimentComponent;
