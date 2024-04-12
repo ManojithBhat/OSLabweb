@@ -104,7 +104,7 @@ const ExperimentComponent = ({ darkMode }) => {
           </SyntaxHighlighter>
           </div>
 
-          {experiments.find(exp => exp.title === selectedCode)?.imageUrl && (
+          {/* {experiments.find(exp => exp.title === selectedCode)?.imageUrl && (
           <div className={`mt-4 w-full`}>
             <h6 className={`${darkMode ? "text-white" : "text-black"} mb-4`}>
               Sample Output
@@ -115,7 +115,7 @@ const ExperimentComponent = ({ darkMode }) => {
               className=" w-full shadow-md"
             />
           </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

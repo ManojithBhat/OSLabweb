@@ -280,7 +280,7 @@ const experiments = [
     $ gcc -o binsearch binsearch.c
     $ gcc ProcessControl.c
     $ ./a.out `,
-    imageUrl: "path_to_image_2.jpg",
+    imageUrl: null,
   },
   {
     title: "Thread management using Pthreads",
@@ -342,7 +342,7 @@ const experiments = [
     cle: `
     $ gcc ThreadManage.c -pthread
     $ ./a.out `,
-    imageUrl: "path_to_image_2.jpg",
+    imageUrl: null,
   },
     { title: 'Dining philosophers problem', code: `#include <pthread.h>
     #include <semaphore.h>
@@ -629,7 +629,7 @@ const experiments = [
     cle: `
     $ gcc Filelocks.c
     $ ./a.out filename`,
-    imageUrl: "path_to_image_2.jpg",
+    imageUrl: null,
   },
   {
     title: "Creation and use of Static and Shared libraries",
@@ -686,9 +686,9 @@ const experiments = [
     gcc -shared -o libmath1.so add.o sub.o
     gcc -o opDemo opDemo.o libmath1.so 
     ./opDemo`,
-    imageUrl: "path_to_image_2.jpg",
+    imageUrl: null,
   },
-  // Add more experiments here...
+  
 ];
 
 export default experiments;
