@@ -194,7 +194,56 @@ const experiments = [
     
     }
     return 0;
-    }`},
+    }
+    
+    //Binary search program 'binsearch.c' in a separate file
+    #include<stdio.h>
+
+    int binarySearch(int arr[], int l, int r, int x)
+    {
+    if (r >= l) {
+    int mid = l + (r - l) / 2;
+    if (arr[mid] == x)
+    return 1;
+    if (arr[mid] > x)
+    return binarySearch(arr, l, mid - 1, x);
+    return binarySearch(arr, mid + 1, r, x);
+    }
+    return -1;
+    }
+    
+    void swap(int *xp, int *yp) {
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+    }
+    
+    void sort(int arr[], int n) {
+    int i, j;
+    for (i = 0; i < n-1; i++)
+    for (j = 0; j < n-i-1; j++)
+    if (arr[j] > arr[j+1])
+    swap(&arr[j], &arr[j+1]);
+    }
+    
+    int main(){
+    int n,key, arr[10];
+    printf("Enter the number of elements in the array: ");
+    scanf("%d",&n);
+    printf("Enter the elements: ");
+    for(int i=0;i<n;i++)
+    scanf("%d",&arr[i]);
+    
+    sort(arr,n);
+    printf("Enter element to be searched: ");
+    scanf("%d",&key);
+    int result = binarySearch(arr, 0, n - 1, key);
+    if(result==-1)
+    printf("Element is not present in array");
+    else
+    printf("Element is present");
+    return 0;
+    } `},
     { title: 'Thread management using Pthreads', code: `#include<stdio.h>
     #include<pthread.h> //handle pthread operations
     #include<sys/types.h>
@@ -250,6 +299,153 @@ const experiments = [
         pthread_exit(NULL); //terminates calling thread
         return 0;
     }`},
+    { title: 'Dining philosophers problem', code: `#include <pthread.h>
+    #include <semaphore.h>
+    #include <stdio.h>
+    #define N 5  //number of philosophers
+    #define THINKING 2  //defining states of philosophers
+    #define HUNGRY 1
+    #define EATING 0
+    #define LEFT (phnum + 4) % N 
+    #define RIGHT (phnum + 1) % N
+    
+    int state[N];
+    int phil[N] = { 0, 1, 2, 3, 4 }; //ID of philosophers
+    sem_t mutex, S[N]; //sempahores to control synchronisation
+    
+    //check if neighbours are eating
+    void test(int phnum){ 
+    if (state[phnum] == HUNGRY && state[LEFT] != EATING && state[RIGHT] != EATING) {
+    state[phnum] = EATING; //change state to eating
+    sleep(2);
+    printf("Philosopher %d takes fork %d and %d\\n",phnum + 1, LEFT + 1, phnum + 1);
+    printf("Philosopher %d is Eating\\n", phnum + 1);
+    sem_post(&S[phnum]);// used to wake up hungry philosophers during putfork
+    }
+    } 
+    
+    // take up chopsticks
+    void take_fork(int phnum){
+    sem_wait(&mutex);//only one philosopher can change state at a time
+    state[phnum] = HUNGRY;// change state to hungry
+    printf("Philosopher %d is Hungry\\n", phnum + 1);
+    //eat if neighbours are not eating
+    test(phnum);
+    sem_post(&mutex);
+    sem_wait(&S[phnum]);//if unable to eat wait to be signalled
+    sleep(1);
+    }
+    
+    // put down chopsticks
+    void put_fork(int phnum){
+    sem_wait(&mutex);
+    state[phnum] = THINKING;//change state to thinking
+    printf("Philosopher %d putting fork %d and %d down\\n", phnum + 1, LEFT + 1, phnum + 1);
+    printf("Philosopher %d is thinking\\n", phnum + 1);
+    //if neigbours can start eating
+    test(LEFT); 
+    test(RIGHT);
+    sem_post(&mutex);//
+    }
+    
+    //thread calling function
+    void* philospher(void* num){
+    while (1) {
+    int* i = num;
+    sleep(1);//time spent thinking before eating again
+    take_fork(*i);//decide to eat again
+    sleep(0);
+    put_fork(*i);//finish eating
+    }
+    }
+    
+    int main(){
+    int i;
+    pthread_t thread_id[N];
+    // initialize the semaphores
+    sem_init(&mutex, 0, 1);
+    for (i = 0; i < N; i++)
+     sem_init(&S[i], 0, 0);
+    
+    for (i = 0; i < N; i++) {
+    // create philosopher process threads
+     pthread_create(&thread_id[i], NULL, philospher, &phil[i]);
+     printf("Philosopher %d is thinking\\n", i + 1);
+    }
+    for (i = 0; i < N; i++)
+     pthread_join(thread_id[i], NULL);
+    
+    }`},
+    { title: 'Producer-Consumer problem', code: `#include<stdio.h>
+    #include<semaphore.h>
+    #include<pthread.h>
+    #include<stdlib.h>
+    #define buffersize 10
+    
+    pthread_mutex_t mutex;
+    pthread_t tidP[20],tidC[20];//producers,consumers
+    sem_t full,empty;//semaphores to control full/empty state in buffer
+    int counter;//track no. of items in buffer
+    int buffer[buffersize];
+    
+    //Initialize semaphores and mutex variables
+    void initialize(){
+    pthread_mutex_init(&mutex,NULL);
+    sem_init(&full,1,0);
+    sem_init(&empty,1,buffersize);
+    counter=0;
+    }
+     
+    void write(int item){
+      buffer[counter++]=item;
+    }
+    int read(){
+      return(buffer[--counter]);
+    }
+    //Producer process
+    void * producer (void * param){
+    int waittime,item,i;
+    item=rand()%5;
+    waittime=rand()%5;
+    sem_wait(&empty); //if buffer is full, producer waits, by decrementing empty
+    pthread_mutex_lock(&mutex); //mutual exclusion to write to buffer
+    printf("\\nProducer has produced item: %d\\n",item);
+    write(item);
+    pthread_mutex_unlock(&mutex); //unlock mutex
+    sem_post(&full); //increments full, indicating new item added to buffer
+    }
+    
+    //Consumer process
+    void *consumer (void * param){
+    int waittime,item;
+    waittime=rand()%5;
+    sem_wait(&full);//if buffer is empty, consumer waits
+    pthread_mutex_lock(&mutex); //mutual exclusion to write to buffer
+    item=read();
+    printf("\\nConsumer has consumed item: %d\\n",item);
+    pthread_mutex_unlock(&mutex); //unlock mutex
+    sem_post(&empty);//increments empty, indicating buffer is no longer full
+    }
+    
+    int main(){
+    int n1,n2,i;
+    initialize();
+    printf("\\nEnter the no of producers: ");
+    scanf("%d",&n1);
+    printf("\\nEnter the no of consumers: ");
+    scanf("%d",&n2);
+    for(i=0;i<n1;i++)
+      pthread_create(&tidP[i],NULL,producer,NULL);
+    for(i=0;i<n2;i++)
+      pthread_create(&tidC[i],NULL,consumer,NULL);
+    
+    for(i=0;i<n1;i++)
+      pthread_join(tidP[i],NULL);
+    for(i=0;i<n2;i++)
+      pthread_join(tidC[i],NULL);
+    
+    exit(0);
+    }`},
     { title: 'Reader-Writer problem', code: `#include<stdio.h>
     #include<stdlib.h>
     #include<pthread.h>
@@ -295,6 +491,119 @@ const experiments = [
     for(int i=0;i<6;i++) pthread_join(p[i],NULL);
     
     }`},
+    { title: 'Process/thread synchronisation using File locks', code: `#include <stdio.h>
+    #include <stdlib.h>
+    #include <unistd.h>
+    #include <fcntl.h> //file control
+    #include <errno.h>
+    
+    int main(int argc,char *argv[]){
+    int fd; //file descriptor to perform operations on file
+    char buffer[255];
+    struct flock fvar; //file lock structure
+    //if src file not specified
+    if(argc==1)
+     {
+       printf("usage: %s filename\\n",argv[0]);
+       return -1;
+     }
+    if((fd=open(argv[1],O_RDWR))==-1)
+     {
+      perror("open");
+      exit(1);
+    }
+    
+    fvar.l_type=F_WRLCK; //type- write lock
+    fvar.l_whence=SEEK_END; //relative offset- end of file
+    fvar.l_start=SEEK_END-100; //starting offset
+    fvar.l_len=100; //lock length
+    
+    printf("press enter to set lock\\n");
+    getchar();
+    printf("trying to get lock..\\n");
+    
+    if((fcntl(fd,F_SETLK,&fvar))==-1)
+    { 
+        fcntl(fd,F_GETLK,&fvar);
+        printf("\\nFile already locked by process (pid): %d\\n",fvar.l_pid);
+        return -1;
+    }
+    printf("locked\\n");
+    
+    if((lseek(fd,SEEK_END-50,SEEK_END))==-1){
+      perror("lseek");
+      exit(1);
+    }
+    if((read(fd,buffer,100))==-1)
+    {
+      perror("read");
+      exit(1);
+    }
+    
+    printf("data read from file..\\n");
+    puts(buffer);
+    printf("press enter to release lock\\n");
+    getchar();
+    
+    fvar.l_type = F_UNLCK; //unlock file
+    fvar.l_whence = SEEK_SET; //reset to beginning of file
+    fvar.l_start = 0;
+    fvar.l_len = 0;
+    
+    if((fcntl(fd,F_UNLCK,&fvar))==-1)
+    {
+    perror("fcntl");
+    exit(0);
+    }
+    
+    printf("Unlocked\\n");
+    close(fd);
+    return 0;
+    }`},
+    { title: 'Creation and use of Static and Shared libraries', code: `
+    /* add.c */
+    int add(int quant1, int quant2)
+    {
+      return(quant1 + quant2);
+    }
+
+    /* sub.c */
+    int sub(int quant1, int quant2)
+    {
+      return(quant1 - quant2);
+    }
+
+    /* math1.h -library file that contains function declarations */
+    int add(int, int); //adds two integers
+    int sub(int, int); //subtracts second integer from first
+    
+    /* opDemo.c */
+    #include <math1.h>
+    #include <stdio.h>
+ 
+    int main()
+    {
+     int x,y;
+     printf("Enter values for x and y: ");
+     scanf("%d %d",&x,&y);
+     printf("%d + %d = %d \\n", x, y, add(x, y));
+     printf("%d - %d = %d \\n", x, y, sub(x, y));
+     return 0;
+    }
+    
+    /* Static Linking */
+    gcc -c add.c  //create object files
+    gcc -c sub.c
+    ar rs libmath1.a add.o sub.o  //link object files to library file (prefix- lib) (extension- .a for static)
+    gcc -o opDemo opDemo.o libmath1.a
+
+    /* Dynamic Linking */
+    gcc -Wall -fPIC -c add.c
+    gcc -Wall -fPIC -c sub.c
+    gcc -shared -o libmath1.so add.o sub.o //link object files to library file (prefix- lib) (extension- .so for shared)
+    gcc -o opDemo opDemo.o libmath1.so
+
+    `},
     // Add more experiments here...
   ];
 
