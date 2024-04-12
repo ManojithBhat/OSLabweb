@@ -70,12 +70,10 @@ const experiments = [
     }
     
     }`, 
-    cle: `/* Command-line execution
-
+    cle: `
     $ gcc lsprogram.c
-    $ ./a.out
-    
-    */`
+    $ ./a.out`,
+    imageUrl: "image.png",
   },
   {
     title: "cp command",
@@ -127,7 +125,10 @@ const experiments = [
     close (output_fd);
     return (EXIT_SUCCESS);
     }`,
-    imageUrl: "Diningph.png",
+    cle: `
+    $ gcc cpprogram.c
+    $ ./a.out file1 file2`,
+    imageUrl: "image.png",
   },
   {
     title: "mv command",
@@ -160,6 +161,10 @@ const experiments = [
     }
     
     }`,
+    cle: `
+    $ gcc mvprogram.c
+    $ ./a.out file1 file2`,
+    imageUrl: "image.png",
   },
   {
     title: "rm command",
@@ -178,6 +183,10 @@ const experiments = [
       return 3;
     }
     }`,
+    cle: `
+    $ gcc rmprogram.c
+    $ ./a.out file1`,
+    imageUrl: "Image.png",
   },
   {
     title: "Process Control System Calls",
@@ -266,7 +275,11 @@ const experiments = [
     else
     printf("Element is present\\n");
     return 0;
-    } `,
+    } `, 
+    cle: `
+    $ gcc -o binsearch binsearch.c
+    $ gcc ProcessControl.c
+    $ ./a.out `,
     imageUrl: "path_to_image_2.jpg",
   },
   {
@@ -325,7 +338,12 @@ const experiments = [
         }
         pthread_exit(NULL); //terminates calling thread
         return 0;
-    }`, imageUrl: "/Threadmanagement.png"},
+    }`, 
+    cle: `
+    $ gcc ThreadManage.c -pthread
+    $ ./a.out `,
+    imageUrl: "path_to_image_2.jpg",
+  },
     { title: 'Dining philosophers problem', code: `#include <pthread.h>
     #include <semaphore.h>
     #include <stdio.h>
@@ -403,6 +421,9 @@ const experiments = [
      pthread_join(thread_id[i], NULL);
     
     }`,
+    cle: `
+    $ gcc DiningPh.c -pthread 
+    $ ./a.out`,
     imageUrl: "Diningph.png",
   },
   {
@@ -477,6 +498,9 @@ const experiments = [
     
     exit(0);
     }`,
+    cle: `
+    $ gcc ProducerConsumer.c -pthread 
+    $ ./a.out`,
     imageUrl: "Producersconsumers.png",
   },
   {
@@ -526,6 +550,9 @@ const experiments = [
     for(int i=0;i<6;i++) pthread_join(p[i],NULL);
     
     }`,
+    cle: `
+    $ gcc ReaderWriter.c -pthread
+    $ ./a.out`,
     imageUrl: "Readerswriters.png",
   },
   {
@@ -599,6 +626,9 @@ const experiments = [
     close(fd);
     return 0;
     }`,
+    cle: `
+    $ gcc Filelocks.c
+    $ ./a.out filename`,
     imageUrl: "path_to_image_2.jpg",
   },
   {
@@ -634,19 +664,28 @@ const experiments = [
      return 0;
     }
     
-    /* Static Linking */
-    gcc -c add.c  //create object files
-    gcc -c sub.c
+    /* Static Linking
     ar rs libmath1.a add.o sub.o  //link object files to library file (prefix- lib) (extension- .a for static)
-    gcc -o opDemo opDemo.o libmath1.a
+    */
+
+    /* Dynamic Linking 
+    gcc -shared -o libmath1.so add.o sub.o //link object files to library file (prefix- lib) (extension- .so for shared)
+    */
+    `,
+    cle: `
+    /* Static Linking */
+    gcc -c add.c  
+    gcc -c sub.c
+    ar rs libmath1.a add.o sub.o
+    gcc -o opDemo opDemo.o libmath1.a 
+    ./opDemo
 
     /* Dynamic Linking */
     gcc -Wall -fPIC -c add.c
     gcc -Wall -fPIC -c sub.c
-    gcc -shared -o libmath1.so add.o sub.o //link object files to library file (prefix- lib) (extension- .so for shared)
-    gcc -o opDemo opDemo.o libmath1.so
-
-    `,
+    gcc -shared -o libmath1.so add.o sub.o
+    gcc -o opDemo opDemo.o libmath1.so 
+    ./opDemo`,
     imageUrl: "path_to_image_2.jpg",
   },
   // Add more experiments here...
