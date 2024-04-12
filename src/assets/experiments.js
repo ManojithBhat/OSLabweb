@@ -299,7 +299,7 @@ const experiments = [
         }
         pthread_exit(NULL); //terminates calling thread
         return 0;
-    }`, imageUrl: "path_to_image_2.jpg"},
+    }`, imageUrl: "https://github.com/ManojithBhat/OSLabweb/blob/main/images/Threadmanagement.png"},
     { title: 'Dining philosophers problem', code: `#include <pthread.h>
     #include <semaphore.h>
     #include <stdio.h>
