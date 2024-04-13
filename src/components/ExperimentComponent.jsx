@@ -72,7 +72,7 @@ const ExperimentComponent = ({ darkMode }) => {
               backgroundColor: darkMode ? "#262730" : "#F9FAFB",
               borderRadius: "5px",
               padding: "1rem",
-              fontSize: "14px",
+              fontSize: "18px",
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               color: darkMode ? "#ffffff" : "#000000", // Text color based on dark mode
             }}
@@ -95,7 +95,7 @@ const ExperimentComponent = ({ darkMode }) => {
               backgroundColor: darkMode ? "#262730" : "#F9FAFB",
               borderRadius: "5px",
               padding: "1rem",
-              fontSize: "14px",
+              fontSize: "18px",
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               color: darkMode ? "#ffffff" : "#000000", // Text color based on dark mode
             }}
