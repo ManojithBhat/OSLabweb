@@ -347,6 +347,7 @@ const experiments = [
     { title: 'Dining philosophers problem', code: `#include <pthread.h>
     #include <semaphore.h>
     #include <stdio.h>
+    #include<unistd.h>
     #define N 5  //number of philosophers
     #define THINKING 2  //defining states of philosophers
     #define HUNGRY 1
